@@ -3,22 +3,7 @@ import { connect } from 'react-redux';
 import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
 import { incrementSelection, actions } from '../components/actions/MoodActions';
-
-export const isTired = state => state.coffees < 1 && state.naps < 1;
-export const isHyper = state => state.coffees > 3;
-export const isEducated = state => state.studies > 2;
-export const isHungry = state => state.snacks < 1;
-
-export const getFace = state => {
-  if(isTired(state) && isHungry(state)) return '🤬';
-  if(isHyper(state) && isHungry(state)) return '🤮';
-  if(isTired(state)) return '😴';
-  if(isHyper(state)) return '🙀';
-  if(isEducated(state)) return '🤯';
-  if(isHungry(state)) return '😡';
-
-  return '😀';
-};
+import { getFace, getActions } from '../components/Selectors/Selectors';
 
 // eslint-disable-next-line react/prop-types
 const Moods = ({ actions, emoji, handleSelection }) => (
@@ -29,7 +14,7 @@ const Moods = ({ actions, emoji, handleSelection }) => (
 );
 
 const mapStateToProps = state => ({
-  actions: actions.map(action => ({ ...action, count: state[action.stateName] })),
+  actions: getActions(state),
   emoji: getFace(state)
 });
 
