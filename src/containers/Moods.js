@@ -2,22 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
-
-export const isTired = state => state.coffees < 1 && state.naps < 1;
-export const isHyper = state => state.coffees > 3;
-export const isEducated = state => state.studies > 2;
-export const isHungry = state => state.snacks < 1;
-
-export const getFace = state => {
-  if(isTired(state) && isHungry(state)) return '🤬';
-  if(isHyper(state) && isHungry(state)) return '🤮';
-  if(isTired(state)) return '😴';
-  if(isHyper(state)) return '🙀';
-  if(isEducated(state)) return '🤯';
-  if(isHungry(state)) return '😡';
-
-  return '😀';
-};
+import { drinkCoffee, eatSnacks, takeNap, studyTime } from '../components/actions/MoodActions';
+import { getFace } from '../components/Selectors/Selectors';
 
 const actions = [
   { name: 'DRINK_COFFEE', text: 'Drink Coffee', stateName: 'coffees' },
@@ -29,7 +15,7 @@ const actions = [
 // eslint-disable-next-line react/prop-types
 const Moods = ({ actions, emoji, handleSelection }) => (
   <>
-    <Controls actions={actions} handleSelection={handleSelection} />
+    <Controls actions={actions} handleSelection={handleSelection}/>
     <Face emoji={emoji} />
   </>
 );
@@ -39,13 +25,21 @@ const mapStateToProps = state => ({
   emoji: getFace(state)
 });
 
-const mapDispatchToProps = dispatch => ({
-  handleSelection(name) {
-    dispatch({
-      type: name
-    });
-  }
-});
+// const mapDispatchToProps = dispatch => ({
+//   handleSelection(name) {
+//     dispatch({
+//       type: name
+//     });
+//   }
+// });
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleSelection(name) {
+      dispatch(drinkCoffee(name));
+    }
+  };
+};
 
 export default connect(
   mapStateToProps,
