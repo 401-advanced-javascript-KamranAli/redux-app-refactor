@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Controls from '../components/controls/Controls';
 import Face from '../components/face/Face';
-import { incrementSelection, actions } from '../components/actions/MoodActions';
+import { incrementSelection } from '../components/actions/MoodActions';
 import { getFace, getActions } from '../components/Selectors/Selectors';
 
 // eslint-disable-next-line react/prop-types
