@@ -34,6 +34,12 @@ exports[`Moods container matches a snapshot 1`] = `
         "stateName": "resets",
         "text": "Reset",
       },
+      Object {
+        "count": undefined,
+        "name": "SAVE",
+        "stateName": "saves",
+        "text": "Save",
+      },
     ]
   }
   emoji="🤬"
