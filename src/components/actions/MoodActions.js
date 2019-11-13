@@ -4,6 +4,7 @@ export const actions = [
   { name: 'EAT_SNACK', text: 'Snack', stateName: 'snacks' },
   { name: 'TAKE_NAP', text: 'Nap', stateName: 'naps' },
   { name: 'STUDY', text: 'Study', stateName: 'studies' },
+  { name: 'RESET', text: 'Reset', stateName: 'resets' }
 ];
 
 export const incrementSelection = name => ({

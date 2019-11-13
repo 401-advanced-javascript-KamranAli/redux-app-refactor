@@ -6,10 +6,11 @@ import { incrementSelection } from '../components/actions/MoodActions';
 import { getFace, getActions } from '../components/Selectors/Selectors';
 
 // eslint-disable-next-line react/prop-types
-const Moods = ({ actions, emoji, handleSelection }) => (
+const Moods = ({ actions, emoji, handleSelection, reset }) => (
   <>
     <Controls actions={actions} handleSelection={handleSelection}/>
     <Face emoji={emoji} />
+    <button reset={reset}>RESET</button>
   </>
 );
 
